@@ -1,0 +1,16 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        N, M = len(image), len(image[0])
+        l = image[sr][sc]
+        if l == newColor: return image
+        def fun(n, m):
+            if image[n][m] ==l:
+                image[n][m] = newColor
+                if n>= 1: fun(n-1, m)
+                if n+1 < N: fun(n+1, m)
+                if m >= 1: fun(n, m-1)
+                if m+1 < M: fun(n, m+1)
+
+        fun(sr, sc)
+        return image
+        
